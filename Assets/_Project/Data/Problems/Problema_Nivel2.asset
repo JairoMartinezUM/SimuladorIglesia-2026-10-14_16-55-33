@@ -17,7 +17,7 @@ MonoBehaviour:
     los cantos. Tu trabajo detr\xE1s de escena hace posible que todos participen"
   report: "Reporte del di\xE1cono: la pantalla no da imagen."
   hints: []
-  timeLimitSeconds: 120
+  timeLimitSeconds: 90
   objectiveNodes:
   - Pantalla
   faults:

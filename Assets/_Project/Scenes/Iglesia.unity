@@ -148,7 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfe58dadaf9dbc49a24e6514fd429f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  problem: {fileID: 11400000, guid: 2ec793580c7ecf94dac7b4b683daf991, type: 2}
+  problems:
+  - {fileID: 11400000, guid: 2ec793580c7ecf94dac7b4b683daf991, type: 2}
+  - {fileID: 11400000, guid: 7eab7d2d37d8e9f449b3f1d452586745, type: 2}
   briefingPanel: {fileID: 339271215}
   briefingText: {fileID: 167897051}
   timerText: {fileID: 661480656}
