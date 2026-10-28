@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76b292f2e0bb5ce429e4515167180987, type: 3}
   m_Name: Problema_Nivel2
   m_EditorClassIdentifier: Assembly-CSharp::ProblemData
-  title: Pantalla sin imagen
-  briefing: "Hoy es el culto de s\xE1bado y los hermanos esperan ver la letra de
-    los cantos. Tu trabajo detr\xE1s de escena hace posible que todos participen"
-  report: "Reporte del di\xE1cono: la pantalla no da imagen."
+  title: Entrada equivocada
+  briefing: "Algo con el valor de servicio, por ejemplo: \u201CEsta noche hay un
+    bautismo y la familia espera ver el video de testimonio en pantalla. Sin imagen,
+    el mensaje se pierde.\u201D"
+  report: "Reporte del director de m\xFAsica: la pantalla dice \u2018Sin se\xF1al\u2019,
+    pero la laptop est\xE1 encendida y el cable est\xE1 conectado. La laptop est\xE1
+    en la entrada HDMI 1"
   hints: []
   timeLimitSeconds: 90
   objectiveNodes:
   - Pantalla
   faults:
-  - kind: 0
-    targetId: HDMI
-    nodeFault: 0
+  - kind: 2
+    targetId: Pantalla
+    nodeFault: 3

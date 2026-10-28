@@ -17,10 +17,14 @@ public class CableInteractable : MonoBehaviour, IInteractable
         ? $"E: desconectar {cableName} "
         : $"E: conectar {cableName}";
 
-    public void Interact ()
+    public void Interact()
     {
+        bool wasConnected = cable.isConnected;
         cable.SetConnected(!cable.isConnected);
         Refresh();
+
+        if (wasConnected && LevelManager.Instance != null)
+            LevelManager.Instance.RegisterMistake();
     }
 
     void Refresh()

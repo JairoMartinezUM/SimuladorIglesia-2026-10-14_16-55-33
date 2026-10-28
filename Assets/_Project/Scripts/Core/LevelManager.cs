@@ -30,9 +30,24 @@ public class LevelManager : MonoBehaviour
     ProblemData problem;
     SignalNode[] objectives;
     float timeLeft;
+
+    [Header("Puntuación")]
+    public int mistakePenalty = 100;
+
+    public static LevelManager Instance { get; private set; }
+    int mistakes;
+
     bool won;
 
     bool HasNext => currentLevel < problems.Length - 1;
+
+    void Awake() { Instance = this; }
+
+    public void RegisterMistake()
+    {
+        if (State != GameState.Playing) return;
+        mistakes++;
+    }
 
     void Start()
     {
@@ -133,13 +148,17 @@ public class LevelManager : MonoBehaviour
 
         if (success)
         {
-            int score = Mathf.RoundToInt(1000f * Mathf.Clamp01(timeLeft / problem.timeLimitSeconds));
-            totalScore += score;
+            int timeScore = Mathf.RoundToInt(1000f * Mathf.Clamp01(timeLeft / problem.timeLimitSeconds));
+            int penalty = mistakes * mistakePenalty;
+            int levelScore = Mathf.Max(0, timeScore - penalty);
+            totalScore += levelScore;
 
             string next = HasNext ? "ENTER: siguiente nivel" : "¡Completaste todos los niveles!\n\nENTER: volver a empezar";
             resultText.text =
-                $"<b>¡Servicio salvado!</b>\n\nTiempo restante: {FormatTime(timeLeft)}\n" +
-                $"Puntos del nivel: {score}\nPuntos totales: {totalScore}\n\n{next}";
+                "<b>¡Servicio salvado!</b>\n\n" +
+                $"Tiempo restante: {FormatTime(timeLeft)}  (+{timeScore})\n" +
+                $"Errores: {mistakes}  (-{penalty})\n" +
+                $"Puntos del nivel: {levelScore}\nPuntos totales: {totalScore}\n\n{next}";
         }
         else
         {
