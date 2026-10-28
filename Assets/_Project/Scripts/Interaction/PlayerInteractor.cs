@@ -26,6 +26,7 @@ public class PlayerInteractor : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f) { if (promptText != null) promptText.text = ""; return; }
         IInteractable target = null;
 
         var ray = new Ray(cam.transform.position, cam.transform.forward);

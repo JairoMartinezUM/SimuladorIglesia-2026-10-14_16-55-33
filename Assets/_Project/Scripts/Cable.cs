@@ -18,4 +18,6 @@ public class Cable : MonoBehaviour
         isConnected = value;
         if (to != null) to.NotifyChanged();
     }
+
+    public string id = "HDMI";
 }

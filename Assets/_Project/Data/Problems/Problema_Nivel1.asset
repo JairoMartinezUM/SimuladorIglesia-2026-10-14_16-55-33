@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b292f2e0bb5ce429e4515167180987, type: 3}
+  m_Name: Problema_Nivel1
+  m_EditorClassIdentifier: Assembly-CSharp::ProblemData
+  title: Pantalla sin imagen
+  briefing: "Hoy es el culto de s\xE1bado y los hermanos esperan ver la letra de
+    los cantos. Tu trabajo detr\xE1s de escena hace posible que todos participen"
+  report: "Reporte del di\xE1cono: la pantalla no da imagen."
+  hints: []
+  timeLimitSeconds: 120
+  objectiveNodes:
+  - Pantalla
+  faults:
+  - kind: 0
+    targetId: HDMI
+    nodeFault: 0
