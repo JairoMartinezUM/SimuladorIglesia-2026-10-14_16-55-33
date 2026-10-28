@@ -20,4 +20,10 @@ public class Cable : MonoBehaviour
     }
 
     public string id = "HDMI";
+
+    public void SetDamaged(bool value)
+    {
+        isDamaged = value;
+        if (to != null) to.NotifyChanged();
+    }
 }
