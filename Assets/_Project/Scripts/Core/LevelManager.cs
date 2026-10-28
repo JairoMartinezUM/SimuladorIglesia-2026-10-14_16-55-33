@@ -9,7 +9,7 @@ public enum GameState { Briefing, Playing, Result }
 [DefaultExecutionOrder(-100)]   // corre antes que los demás Start, para aplicar las fallas primero
 public class LevelManager : MonoBehaviour
 {
-    public ProblemData problem;
+    public ProblemData[] problems;
 
     [Header("UI")]
     public GameObject briefingPanel;
@@ -20,11 +20,32 @@ public class LevelManager : MonoBehaviour
 
     public GameState State { get; private set; }
 
+    // Persisten al recargar la escena
+    static int currentLevel;
+    static int totalScore;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics() { currentLevel = 0; totalScore = 0; }
+
+    ProblemData problem;
     SignalNode[] objectives;
     float timeLeft;
+    bool won;
+
+    bool HasNext => currentLevel < problems.Length - 1;
 
     void Start()
     {
+        if (problems == null || problems.Length == 0)
+        {
+            Debug.LogError("LevelManager: la lista 'problems' está vacía.");
+            enabled = false;
+            return;
+        }
+
+        currentLevel = Mathf.Clamp(currentLevel, 0, problems.Length - 1);
+        problem = problems[currentLevel];
+
         ApplyFaults();
 
         objectives = FindObjectsByType<SignalNode>(FindObjectsSortMode.None)
@@ -75,7 +96,9 @@ public class LevelManager : MonoBehaviour
                 break;
 
             case GameState.Result:
-                if (kb != null && kb.rKey.wasPressedThisFrame) Retry();
+                if (kb == null) break;
+                if (won && kb.enterKey.wasPressedThisFrame) GoToNext();
+                else if (!won && kb.rKey.wasPressedThisFrame) Reload();
                 break;
         }
     }
@@ -88,6 +111,7 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0f;
         briefingPanel.SetActive(true);
         briefingText.text =
+            $"<size=70%>Nivel {currentLevel + 1} de {problems.Length}</size>\n" +
             $"<b>{problem.title}</b>\n\n{problem.briefing}\n\n<i>{problem.report}</i>\n\n" +
             $"Tiempo: {FormatTime(problem.timeLimitSeconds)}\n\nPresiona ENTER para comenzar";
         UpdateTimerUI();
@@ -100,16 +124,22 @@ public class LevelManager : MonoBehaviour
         briefingPanel.SetActive(false);
     }
 
-    void Finish(bool won)
+    void Finish(bool success)
     {
+        won = success;
         State = GameState.Result;
         Time.timeScale = 0f;
         resultPanel.SetActive(true);
 
-        if (won)
+        if (success)
         {
             int score = Mathf.RoundToInt(1000f * Mathf.Clamp01(timeLeft / problem.timeLimitSeconds));
-            resultText.text = $"<b>¡Servicio salvado!</b>\n\nTiempo restante: {FormatTime(timeLeft)}\nPuntos: {score}\n\nR: reintentar";
+            totalScore += score;
+
+            string next = HasNext ? "ENTER: siguiente nivel" : "¡Completaste todos los niveles!\n\nENTER: volver a empezar";
+            resultText.text =
+                $"<b>¡Servicio salvado!</b>\n\nTiempo restante: {FormatTime(timeLeft)}\n" +
+                $"Puntos del nivel: {score}\nPuntos totales: {totalScore}\n\n{next}";
         }
         else
         {
@@ -117,7 +147,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void Retry()
+    void GoToNext()
+    {
+        if (HasNext) currentLevel++;
+        else { currentLevel = 0; totalScore = 0; }
+        Reload();
+    }
+
+    void Reload()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
