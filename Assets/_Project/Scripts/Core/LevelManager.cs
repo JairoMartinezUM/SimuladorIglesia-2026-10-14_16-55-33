@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetStatics() { currentLevel = 0; totalScore = 0; }
+    public static void ResetProgress() { currentLevel = 0; totalScore = 0; }
 
     ProblemData problem;
     SignalNode[] objectives;
