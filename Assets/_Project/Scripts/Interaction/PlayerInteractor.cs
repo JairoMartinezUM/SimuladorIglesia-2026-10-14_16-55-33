@@ -54,8 +54,16 @@ public class PlayerInteractor : MonoBehaviour
 
         var kb = Keyboard.current;
         if (kb == null) return;
-        if (target != null && kb.eKey.wasPressedThisFrame) target.Interact();
-        if (second != null && kb.fKey.wasPressedThisFrame) second.InteractSecondary();
+        if (target != null && kb.eKey.wasPressedThisFrame)
+        {
+            target.Interact();
+            AudioManager.Click();
+        }
+        if (second != null && kb.fKey.wasPressedThisFrame)
+        {
+            second.InteractSecondary();
+            AudioManager.Click();
+        }
     }
 
     void SetCrosshair(bool onTarget)

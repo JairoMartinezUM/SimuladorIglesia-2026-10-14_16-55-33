@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Problema_Nivel1
   m_EditorClassIdentifier: Assembly-CSharp::ProblemData
   title: Pantalla sin imagen
-  briefing: "Hoy es el culto de s\xE1bado y los hermanos esperan ver la letra de
-    los cantos. Tu trabajo detr\xE1s de escena hace posible que todos participen"
+  briefing: "Hoy es el culto de s\xE1bado y los hermanos esperan ver la letra de los cantos. Tu trabajo detr\xE1s de escena hace posible que todos participen"
   report: "Reporte del di\xE1cono: la pantalla no da imagen."
-  hints: []
+  hints:
+  - "Hermano, dicen que el cable de la laptop se ve suelto. \xC9chale un ojo en la cabina."
+  reflection: "El servicio detr\xE1s de escena tambi\xE9n es ministerio."
+  verseText: "Y todo lo que hag\xE1is, hacedlo de coraz\xF3n, como para el Se\xF1or y no para los hombres"
+  verseRef: Colosenses 3:23
   timeLimitSeconds: 120
   objectiveNodes:
   - Pantalla

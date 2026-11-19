@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Problema_Nivel3
   m_EditorClassIdentifier: Assembly-CSharp::ProblemData
   title: "Cable Da\xF1ado y Entrada equivocada"
-  briefing: "Hoy es la Escuela Sab\xE1tica infantil y los ni\xF1os esperan ver una
-    historia b\xEDblica en pantalla. Cuando la imagen falla, se pierde la atenci\xF3n
-    de los m\xE1s peque\xF1os"
-  report: "Reporte del pastor: la pantalla dice \u2018Sin se\xF1al\u2019. Anoche,
-    despu\xE9s del ensayo, alguien movi\xF3 cosas en la cabina y el cable HDMI se
-    ve maltratado"
-  hints: []
+  briefing: "Hoy es la Escuela Sab\xE1tica infantil y los ni\xF1os esperan ver una historia b\xEDblica en pantalla. Cuando la imagen falla, se pierde la atenci\xF3n de los m\xE1s peque\xF1os"
+  report: "Reporte del pastor: la pantalla dice \u2018Sin se\xF1al\u2019. Anoche, despu\xE9s del ensayo, alguien movi\xF3 cosas en la cabina y el cable HDMI se ve maltratado"
+  hints:
+  - "Anoche alguien movi\xF3 el cable HDMI. Mira c\xF3mo se ve el conector en la mesa"
+  - "Aunque lo arregles, revisa que el proyector est\xE9 en la entrada correcta"
+  reflection: "Pedir ayuda y trabajar juntos hace m\xE1s ligera la carga."
+  verseText: Mejores son dos que uno; porque tienen mejor paga de su trabajo.
+  verseRef: "(Eclesiast\xE9s 4:9)"
   timeLimitSeconds: 150
   objectiveNodes:
   - Pantalla

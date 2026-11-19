@@ -51,7 +51,9 @@ public class LevelManager : MonoBehaviour
 
     public void RegisterMistake()
     {
-        if (State == GameState.Playing) mistakes++;
+        if (State != GameState.Playing) return;
+        mistakes++;
+        AudioManager.Error();
     }
 
     public void RegisterReplacement()
@@ -168,6 +170,7 @@ public class LevelManager : MonoBehaviour
         State = GameState.Result;
         Time.timeScale = 0f;
         resultPanel.SetActive(true);
+        if (success) AudioManager.Success(); else AudioManager.Fail();
 
         if (success)
         {
