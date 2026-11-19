@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInteractor : MonoBehaviour
 {
     public float reach = 3f;
-    public float aimRadius = 0.08f;       // tolerancia al apuntar (en metros)
+    public float aimRadius = 0.08f;
     public TMP_Text promptText;
 
     [Header("Mira")]
@@ -26,20 +26,36 @@ public class PlayerInteractor : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale == 0f) { if (promptText != null) promptText.text = ""; return; }
+        if (Time.timeScale == 0f)
+        {
+            if (promptText != null) promptText.text = "";
+            return;
+        }
+
         IInteractable target = null;
+        ISecondaryInteractable second = null;
 
         var ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.SphereCast(ray, aimRadius, out var hit, reach, ~0, QueryTriggerInteraction.Ignore))
+        {
             target = hit.collider.GetComponentInParent<IInteractable>();
+            second = hit.collider.GetComponentInParent<ISecondaryInteractable>();
+        }
 
         if (promptText != null)
-            promptText.text = target != null ? target.Prompt : "";
+        {
+            string text = target != null ? target.Prompt : "";
+            if (second != null && !string.IsNullOrEmpty(second.SecondaryPrompt))
+                text += "\n" + second.SecondaryPrompt;
+            promptText.text = text;
+        }
 
         SetCrosshair(target != null);
 
-        if (target != null && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-            target.Interact();
+        var kb = Keyboard.current;
+        if (kb == null) return;
+        if (target != null && kb.eKey.wasPressedThisFrame) target.Interact();
+        if (second != null && kb.fKey.wasPressedThisFrame) second.InteractSecondary();
     }
 
     void SetCrosshair(bool onTarget)
