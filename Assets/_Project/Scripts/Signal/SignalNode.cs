@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum SignalType { Video, Audio }
-public enum NodeFault { None, Off, Muted, WrongInput, Broken }
+public enum NodeFault { None, Off, Muted, WrongInput, Broken, LowGain }
 
 public class SignalNode : MonoBehaviour
 {

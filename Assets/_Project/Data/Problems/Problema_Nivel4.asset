@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b292f2e0bb5ce429e4515167180987, type: 3}
+  m_Name: Problema_Nivel4
+  m_EditorClassIdentifier: Assembly-CSharp::ProblemData
+  title: "Micr\xF3fono sin sonido"
+  briefing: "Hoy hay un bautismo y el pastor va a dirigir unas palabras a la familia. Si el micr\xF3fono falla, el mensaje no llega a quienes m\xE1s lo esperan."
+  report: "Reporte del pastor: prob\xE9 el micr\xF3fono y no se escucha nada por las bocinas."
+  hints:
+  - "El pastor dice que el micr\xF3fono no se oye. Mira las luces de las bocinas."
+  - "Rojo significa que no llega se\xF1al. Revisa el canal del micr\xF3fono en la mesa de audio."
+  reflection: "El servicio detr\xE1s de escena hace posible que el mensaje llegue."
+  verseText: "\xBFC\xF3mo, pues, invocar\xE1n a aquel en el cual no han cre\xEDdo? \xBFY c\xF3mo creer\xE1n en aquel de quien no han o\xEDdo? \xBFY c\xF3mo oir\xE1n sin haber quien les predique?"
+  verseRef: (Romanos 10:14)
+  timeLimitSeconds: 120
+  objectiveNodes:
+  - Bocina_Izq
+  - Bocina_Der
+  faults:
+  - kind: 2
+    targetId: Mesa
+    nodeFault: 2

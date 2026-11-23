@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b292f2e0bb5ce429e4515167180987, type: 3}
+  m_Name: Problema_Nivel5
+  m_EditorClassIdentifier: Assembly-CSharp::ProblemData
+  title: "Sonido d\xE9bil y sin se\xF1al"
+  briefing: "Esta noche se transmite en vivo un programa misionero. Muchas personas lo ver\xE1n desde sus casas, y el audio es lo primero que se nota cuando falla."
+  report: "Reporte del director de m\xFAsica: el sonido casi no se oye y no s\xE9 por qu\xE9."
+  hints:
+  - "Hermano, el sonido casi no se oye. F\xEDjate en las luces de las bocinas."
+  - "Amarillo es se\xF1al d\xE9bil: sube la ganancia en la mesa de audio. Cuando la arregles, vuelve a mirar las bocinas."
+  - "Si despu\xE9s sigue en rojo, no llega se\xF1al del micr\xF3fono. Revisa su cable en el escenario."
+  reflection: Cuando una falla esconde a otra, hay que revisar hasta el final.
+  verseText: 'Y les dijo: Id por todo el mundo y predicad el evangelio a toda criatura.'
+  verseRef: (Marcos 16:15)
+  timeLimitSeconds: 180
+  objectiveNodes:
+  - Bocina_Izq
+  - Bocina_Der
+  faults:
+  - kind: 2
+    targetId: Mesa
+    nodeFault: 5
+  - kind: 0
+    targetId: XLR
+    nodeFault: 3
