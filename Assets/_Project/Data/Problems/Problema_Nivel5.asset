@@ -22,7 +22,7 @@ MonoBehaviour:
   reflection: Cuando una falla esconde a otra, hay que revisar hasta el final.
   verseText: 'Y les dijo: Id por todo el mundo y predicad el evangelio a toda criatura.'
   verseRef: (Marcos 16:15)
-  timeLimitSeconds: 180
+  timeLimitSeconds: 60
   objectiveNodes:
   - Bocina_Izq
   - Bocina_Der

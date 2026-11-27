@@ -21,7 +21,7 @@ MonoBehaviour:
   reflection: "El servicio detr\xE1s de escena hace posible que el mensaje llegue."
   verseText: "\xBFC\xF3mo, pues, invocar\xE1n a aquel en el cual no han cre\xEDdo? \xBFY c\xF3mo creer\xE1n en aquel de quien no han o\xEDdo? \xBFY c\xF3mo oir\xE1n sin haber quien les predique?"
   verseRef: (Romanos 10:14)
-  timeLimitSeconds: 120
+  timeLimitSeconds: 60
   objectiveNodes:
   - Bocina_Izq
   - Bocina_Der

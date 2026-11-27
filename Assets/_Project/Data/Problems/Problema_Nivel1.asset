@@ -20,7 +20,7 @@ MonoBehaviour:
   reflection: "El servicio detr\xE1s de escena tambi\xE9n es ministerio."
   verseText: "Y todo lo que hag\xE1is, hacedlo de coraz\xF3n, como para el Se\xF1or y no para los hombres"
   verseRef: Colosenses 3:23
-  timeLimitSeconds: 120
+  timeLimitSeconds: 60
   objectiveNodes:
   - Pantalla
   faults:

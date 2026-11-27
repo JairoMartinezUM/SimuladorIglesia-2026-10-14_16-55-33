@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour
     int mistakes;
     int replacements;
     int helpCount;
+    bool finalShown;
 
     bool HasNext => currentLevel < problems.Length - 1;
 
@@ -87,7 +88,7 @@ public class LevelManager : MonoBehaviour
 
         ApplyFaults();
 
-        objectives = FindObjectsByType<SignalNode>(FindObjectsSortMode.None)
+        objectives = FindObjectsByType<SignalNode>()
             .Where(n => problem.objectiveNodes.Contains(n.displayName))
             .ToArray();
 
@@ -98,8 +99,8 @@ public class LevelManager : MonoBehaviour
 
     void ApplyFaults()
     {
-        var cables = FindObjectsByType<Cable>(FindObjectsSortMode.None);
-        var nodes = FindObjectsByType<SignalNode>(FindObjectsSortMode.None);
+        var cables = FindObjectsByType<Cable>();
+        var nodes = FindObjectsByType<SignalNode>();
 
         foreach (var f in problem.faults)
         {
@@ -136,7 +137,7 @@ public class LevelManager : MonoBehaviour
                 break;
 
             case GameState.Result:
-                if (kb == null) break;
+                if (kb == null || finalShown) break;
                 if (won && kb.enterKey.wasPressedThisFrame) GoToNext();
                 else if (!won && kb.rKey.wasPressedThisFrame) Reload();
                 break;
@@ -189,7 +190,7 @@ public class LevelManager : MonoBehaviour
             if (!string.IsNullOrEmpty(problem.verseText))
                 reflection += $"<size=80%><color=#D0D0D0>“{problem.verseText}”\n— {problem.verseRef}</color></size>\n";
             if (reflection != "") reflection += "\n";
-            string next = HasNext ? "ENTER: siguiente nivel" : "¡Completaste todos los niveles!\n\nENTER: volver a empezar";
+            string next = HasNext ? "ENTER: siguiente nivel" : "¡Completaste todos los niveles!\n\nENTER: continuar";
 
             resultText.text =
                 "<b>¡Servicio salvado!</b>\n\n" +
@@ -209,8 +210,15 @@ public class LevelManager : MonoBehaviour
 
     void GoToNext()
     {
-        if (HasNext) currentLevel++;
-        else { currentLevel = 0; totalScore = 0; }
+        if (!HasNext)
+        {
+            // ultimo nivel resuelto: pantalla final (no se reinicia en bucle)
+            finalShown = true;
+            resultPanel.SetActive(false);
+            PantallaFinal.Mostrar(totalScore);
+            return;
+        }
+        currentLevel++;
         Reload();
     }
 

@@ -3,9 +3,9 @@ using UnityEngine;
 public class GeneradorBancas : MonoBehaviour
 {
     public Material material;
-    public int filas = 9;
+    public int filas = 6;
     public float zInicial = 5f;
-    public float separacion = 1f;
+    public float separacion = 1.6f;
     public float xCentro = 2.25f;
     public float largo = 2.9f;
 

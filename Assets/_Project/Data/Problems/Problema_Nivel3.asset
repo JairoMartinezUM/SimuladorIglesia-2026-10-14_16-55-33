@@ -21,7 +21,7 @@ MonoBehaviour:
   reflection: "Pedir ayuda y trabajar juntos hace m\xE1s ligera la carga."
   verseText: Mejores son dos que uno; porque tienen mejor paga de su trabajo.
   verseRef: "(Eclesiast\xE9s 4:9)"
-  timeLimitSeconds: 150
+  timeLimitSeconds: 60
   objectiveNodes:
   - Pantalla
   faults:
